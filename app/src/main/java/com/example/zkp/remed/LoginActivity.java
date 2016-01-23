@@ -20,4 +20,11 @@ public class LoginActivity extends AppCompatActivity {
         ft.add(R.id.fragment_container, new LoginButtons());
         ft.commit();
     }
+
+    public void logInPrompt(View view) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new LoginPrompt());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 }
