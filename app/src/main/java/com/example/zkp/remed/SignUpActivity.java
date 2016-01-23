@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.zkp.remed.model.Record;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -106,6 +109,8 @@ public class SignUpActivity extends AppCompatActivity {
         if (pwParse.compareTo(cPWParse) == 0) {
             //System.out.println("Work2\n\n");
             ParseUser user = new ParseUser();
+            ArrayList<ParseUser> doctors = new ArrayList<ParseUser>();
+            ArrayList<Record> records = new ArrayList<Record>();
             user.setPassword(pwParse);
             user.setUsername(emailParse);
 
@@ -113,6 +118,9 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("phone", phoneParse);
             user.put("firstName", firstParse);
             user.put("lastName", lastParse);
+            user.put("doctors", doctors);
+            user.put("records", records);
+
 
             user.signUpInBackground(new SignUpCallback() {
                 public void done(ParseException e) {
