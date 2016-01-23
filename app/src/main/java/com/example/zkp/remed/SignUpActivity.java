@@ -35,7 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean fullFields;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,14 +119,20 @@ public class SignUpActivity extends AppCompatActivity {
                     if (e == null) {
                         // Hooray! Let them use the app now.
                     } else {
-                        System.out.println(e);
+                        if (e.getCode() == ParseException.USERNAME_TAKEN)
+                            email.setError(getString(R.string.email_taken));
+
+                        ParseUser.getCurrentUser().logOut();
+                        return;
                         // Sign up didn't succeed. Look at the ParseException
                         // to figure out what went wrong
                     }
                 }
             });
         } else {
-
+            cPW.setError(getString(R.string.matching_pass_error));
+            ParseUser.getCurrentUser().logOut();
+            return;
         }
     }
 

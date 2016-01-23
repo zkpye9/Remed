@@ -21,6 +21,9 @@
     <string name="missing_phoneNumber">Please enter your phone number.</string>
     <string name="missing_LoginPassword">Please a password.</string>
     <string name="missing_ConfirmPassword">Please confirm your password.</string>
+    <string name="matching_pass_error">Passwords do not match.</string>
+    <string name="email_taken">This email is already taken.</string>
+
 
 
 </resources>
