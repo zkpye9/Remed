@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_Prompt">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/login_email"
+        android:ems="10"
+        android:id="@+id/LoginEmail"
+        android:layout_gravity="center_horizontal|top" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/login_pass"
+        android:ems="10"
+        android:id="@+id/LoginPassword"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/LoginEmail"
+        android:layout_alignLeft="@+id/LoginEmail"
+        android:layout_alignStart="@+id/LoginEmail"/>
+
+    <Button
+        android:id="@+id/SignUp_Button"
+        android:text="@string/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/LoginPassword"
+        android:layout_alignLeft="@+id/LoginPassword"
+        android:layout_alignStart="@+id/LoginPassword"
+        android:onClick="logIn"/>
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Login_Buttons">
+
+    <Button
+        android:id="@+id/login_Button"
+        android:text="@string/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="logInPrompt"/>
+
+    <Button
+        android:id="@+id/SignUp_Button"
+        android:text="@string/sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/login_Button"
+        android:layout_alignLeft="@+id/login_Button"
+        android:layout_alignStart="@+id/login_Button"
+        android:onClick="signUp"/>
+
+</FrameLayout>
