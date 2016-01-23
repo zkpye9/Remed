@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    public void logInPrompt(View view) {
+    public void logIn(View view) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new LoginPrompt());
         ft.addToBackStack(null);
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void logIn(View view) {
+    public void logInPrompt(View view) {
 
     }
 }

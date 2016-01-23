@@ -37,5 +37,5 @@
         android:layout_alignTop="@+id/LoginPassword"
         android:layout_alignLeft="@+id/LoginPassword"
         android:layout_alignStart="@+id/LoginPassword"
-        android:onClick="logIn"/>
+        android:onClick="logInPrompt"/>
 </RelativeLayout>
