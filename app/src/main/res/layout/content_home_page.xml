@@ -29,8 +29,6 @@
 
     </RelativeLayout>
 
-
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nvView"
         android:layout_width="wrap_content"
