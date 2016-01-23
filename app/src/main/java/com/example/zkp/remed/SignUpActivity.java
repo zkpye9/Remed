@@ -111,6 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
             ParseUser user = new ParseUser();
             ArrayList<ParseUser> doctors = new ArrayList<ParseUser>();
             ArrayList<Record> records = new ArrayList<Record>();
+            boolean whetherDoc = false;
             user.setPassword(pwParse);
             user.setUsername(emailParse);
 
@@ -120,6 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("lastName", lastParse);
             user.put("doctors", doctors);
             user.put("records", records);
+            user.put("identification", whetherDoc);
 
 
             user.signUpInBackground(new SignUpCallback() {
