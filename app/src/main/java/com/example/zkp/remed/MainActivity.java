@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
                 // Send logged in users to Welcome.class
-                //Intent intent = new Intent(MainActivity.this, Welcome.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
+                startActivity(intent);
             finish();
         } else {
-            // Send user to LoginSignupActivity.class
+            // Send user to LoginActivity.class
             Intent intent = new Intent(MainActivity.this,
                     LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
