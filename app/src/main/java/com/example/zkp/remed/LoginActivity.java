@@ -8,8 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText username;
+    private EditText password;
+    private String usernameParse;
+    private String passwordParse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logInPrompt(View view) {
+        username = (EditText)findViewById(R.id.LoginEmail);
+        usernameParse = username.getText().toString();
+
+        password = (EditText)findViewById(R.id.LoginPassword);
+        passwordParse = password.getText().toString();
+
+
 
     }
 }

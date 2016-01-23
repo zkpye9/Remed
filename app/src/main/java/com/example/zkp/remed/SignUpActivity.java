@@ -92,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         cPW = (EditText) findViewById(R.id.ConfirmPassword);
-        cPWParse = pw.getText().toString();
+        cPWParse = cPW.getText().toString();
 
         if(TextUtils.isEmpty(cPWParse)) {
             cPW.setError(getString(R.string.missing_ConfirmPassword));
