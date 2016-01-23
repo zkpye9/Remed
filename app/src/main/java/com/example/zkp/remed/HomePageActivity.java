@@ -15,8 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.ParseAnalytics;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
+import com.parse.PushService;
 
 public class HomePageActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
@@ -27,6 +29,8 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_home_page);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
