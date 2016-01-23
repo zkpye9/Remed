@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String phoneParse;
     private String cPWParse;
 
+    private boolean fullFields;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +49,60 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signUpConfirmation(View view) {
+        fullFields = true;
+
         firstName = (EditText)findViewById(R.id.FirstName);
         firstParse = firstName.getText().toString();
+
+        if(TextUtils.isEmpty(firstParse)) {
+            firstName.setError(getString(R.string.missing_firstName));
+            fullFields = false;
+        }
 
         secondName = (EditText)findViewById(R.id.LastName);
         lastParse = secondName.getText().toString();
 
+        if(TextUtils.isEmpty(lastParse)) {
+            secondName.setError(getString(R.string.missing_lastName));
+            fullFields = false;
+        }
+
         email = (EditText) findViewById(R.id.LoginEmail);
         emailParse = email.getText().toString();
+
+        if(TextUtils.isEmpty(emailParse)) {
+            email.setError(getString(R.string.missing_email));
+            fullFields = false;
+        }
 
         phoneNumber = (EditText) findViewById(R.id.PhoneNumber);
         phoneParse = phoneNumber.getText().toString();
 
+        if(TextUtils.isEmpty(phoneParse)) {
+            phoneNumber.setError(getString(R.string.missing_phoneNumber));
+            fullFields = false;
+        }
+
         pw = (EditText) findViewById(R.id.LoginPassword);
         pwParse = pw.getText().toString();
 
+        if(TextUtils.isEmpty(pwParse)) {
+            pw.setError(getString(R.string.missing_LoginPassword));
+            fullFields = false;
+        }
+
         cPW = (EditText) findViewById(R.id.ConfirmPassword);
         cPWParse = pw.getText().toString();
+
+        if(TextUtils.isEmpty(cPWParse)) {
+            cPW.setError(getString(R.string.missing_ConfirmPassword));
+            fullFields = false;
+        }
+
+        if(fullFields == false) {
+            ParseUser.getCurrentUser().logOut();
+            return;
+        }
 
         if (pwParse.compareTo(cPWParse) == 0) {
             //System.out.println("Work2\n\n");
