@@ -16,9 +16,11 @@ public class LoginPrompt extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_prompt, container, false);
         return view;
     }
+
     public void onBackPressed()
     {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         fm.popBackStack();
     }
+
 }

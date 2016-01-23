@@ -29,7 +29,7 @@
         android:layout_alignStart="@+id/LoginEmail"/>
 
     <Button
-        android:id="@+id/SignUp_Button"
+        android:id="@+id/login_Button_Prompt"
         android:text="@string/log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

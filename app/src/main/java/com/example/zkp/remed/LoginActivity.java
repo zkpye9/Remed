@@ -34,4 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
+
+    public void logIn(View view) {
+
+    }
 }
