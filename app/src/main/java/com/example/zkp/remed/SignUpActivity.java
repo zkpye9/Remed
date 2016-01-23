@@ -46,7 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signUpConfirmation(View view) {
-        //System.out.println("work\n\n\n");
         firstName = (EditText)findViewById(R.id.FirstName);
         firstParse = firstName.getText().toString();
 
@@ -88,6 +87,8 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
             });
+        } else {
+            
         }
     }
 
