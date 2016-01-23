@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.Parse;
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -27,11 +28,22 @@ public class MainActivity extends AppCompatActivity {
 
         Parse.initialize(this, "4ZnAIecM4dhXJ1iqM4KtdoZHPkyOG415vACmyMgb", "0hCpbdIilElJcZGj8NUBln85ekiFO1xI2LEpqVEi");
 
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+                // Send logged in users to Welcome.class
+                //Intent intent = new Intent(MainActivity.this, Welcome.class);
+                //startActivity(intent);
+            finish();
+        } else {
+            // Send user to LoginSignupActivity.class
+            Intent intent = new Intent(MainActivity.this,
+                    LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+        //}
     }
 
     @Override
