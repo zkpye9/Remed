@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.arizona.hack.remed.SignUpActivity"
+    tools:showIn="@layout/activity_sign_up">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/first_name"
+        android:ems="10"
+        android:id="@+id/FirstName"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/last_name"
+        android:ems="10"
+        android:id="@+id/LastName"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/FirstName"
+        android:layout_alignLeft="@+id/FirstName"
+        android:layout_alignStart="@+id/FirstName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/login_email"
+        android:ems="10"
+        android:id="@+id/LoginEmail"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/LastName"
+        android:layout_alignLeft="@+id/LastName"
+        android:layout_alignStart="@+id/LastName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="@string/phone_number"
+        android:ems="10"
+        android:id="@+id/PhoneNumber"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/LoginEmail"
+        android:layout_alignLeft="@+id/LoginEmail"
+        android:layout_alignStart="@+id/LoginEmail"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/login_pass"
+        android:ems="10"
+        android:id="@+id/LoginPassword"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/PhoneNumber"
+        android:layout_alignLeft="@+id/PhoneNumber"
+        android:layout_alignStart="@+id/PhoneNumber"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/confirm_password"
+        android:ems="10"
+        android:id="@+id/ConfirmPassword"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/LoginPassword"
+        android:layout_alignLeft="@+id/LoginPassword"
+        android:layout_alignStart="@+id/LoginPassword"/>
+
+    <Button
+        android:id="@+id/SignUp_Button"
+        android:text="@string/sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/ConfirmPassword"
+        android:layout_alignLeft="@+id/ConfirmPassword"
+        android:layout_alignStart="@+id/ConfirmPassword"
+        android:onClick="signUp"/>
+</RelativeLayout>
+
