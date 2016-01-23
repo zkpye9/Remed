@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         Parse.initialize(this, "4ZnAIecM4dhXJ1iqM4KtdoZHPkyOG415vACmyMgb", "0hCpbdIilElJcZGj8NUBln85ekiFO1xI2LEpqVEi");
 
-        ParseUser user = new ParseUser();
+        /*ParseUser user = new ParseUser();
         user.setUsername("my name");
         user.setPassword("my pass");
         user.setEmail("email@example.com");
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     // to figure out what went wrong
                 }
             }
-        });
+        });*/
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

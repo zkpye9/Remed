@@ -30,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String firstParse;
     private String lastParse;
     private String phoneParse;
+    private String cPWParse;
 
 
     @Override
@@ -45,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signUpConfirmation(View view) {
-        System.out.println("work\n\n\n");
+        //System.out.println("work\n\n\n");
         firstName = (EditText)findViewById(R.id.FirstName);
         firstParse = firstName.getText().toString();
 
@@ -62,36 +63,33 @@ public class SignUpActivity extends AppCompatActivity {
         pwParse = pw.getText().toString();
 
         cPW = (EditText) findViewById(R.id.ConfirmPassword);
+        cPWParse = pw.getText().toString();
 
-        signUpButton = (Button) findViewById(R.id.SignUp_Button);
+        if (pwParse.compareTo(cPWParse) == 0) {
+            //System.out.println("Work2\n\n");
+            ParseUser user = new ParseUser();
+            user.setPassword(pwParse);
+            user.setEmail(emailParse);
+            user.setUsername(emailParse);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (pw.equals(cPW)) {
-                    ParseUser user = new ParseUser();
-                    user.setPassword(pwParse);
-                    user.setEmail(emailParse);
+            // other fields can be set just like with ParseObject
+            user.put("phone", phoneParse);
+            user.put("firstName", firstParse);
+            user.put("lastName", lastParse);
 
-                    // other fields can be set just like with ParseObject
-                    user.put("phoneNumber", phoneParse);
-                    user.put("firstName", firstParse);
-                    user.put("lastName", lastParse);
-
-                    user.signUpInBackground(new SignUpCallback() {
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                // Hooray! Let them use the app now.
-                            } else {
-                                // Sign up didn't succeed. Look at the ParseException
-                                // to figure out what went wrong
-                            }
-                        }
-                    });
+            user.signUpInBackground(new SignUpCallback() {
+                public void done(ParseException e) {
+                    if (e == null) {
+                        // Hooray! Let them use the app now.
+                    } else {
+                        System.out.println(e);
+                        // Sign up didn't succeed. Look at the ParseException
+                        // to figure out what went wrong
+                    }
                 }
-            }
-        });
-
+            });
+        }
     }
 
 }
+

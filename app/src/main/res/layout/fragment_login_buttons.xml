@@ -14,7 +14,7 @@
         android:onClick="logInPrompt"/>
 
     <Button
-        android:id="@+id/SignUp_Button"
+        android:id="@+id/SignUp_firstButton"
         android:text="@string/sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
