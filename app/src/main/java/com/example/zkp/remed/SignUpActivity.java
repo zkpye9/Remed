@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -20,7 +21,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signUp(View view) {
+        EditText firstName = (EditText)findViewById(R.id.FirstName);
+        EditText secondName = (EditText)findViewById(R.id.LastName);
+        EditText email = (EditText) findViewById(R.id.LoginEmail);
+        EditText phoneNumber = (EditText) findViewById(R.id.PhoneNumber);
+        EditText pw = (EditText) findViewById(R.id.LoginPassword);
+        EditText cPW = (EditText) findViewById(R.id.ConfirmPassword);
 
+        
     }
 
 }
