@@ -68,7 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
             //System.out.println("Work2\n\n");
             ParseUser user = new ParseUser();
             user.setPassword(pwParse);
-            user.setEmail(emailParse);
             user.setUsername(emailParse);
 
             // other fields can be set just like with ParseObject
@@ -88,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
         } else {
-            
+
         }
     }
 
