@@ -1,5 +1,6 @@
 package com.example.zkp.remed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,8 +10,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.zkp.remed.model.Record;
+import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -139,6 +142,29 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            ParseUser.logInInBackground(emailParse, pwParse,
+                    new LogInCallback() {
+                        public void done(ParseUser user, ParseException e) {
+                            if (user != null) {
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "No such user exist, please signup",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+
+                                Intent intent = new Intent(
+                                        SignUpActivity.this,
+                                        HomePageActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(),
+                                        "Successfully Sign up",
+                                        Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                        }
+                    });
+
         } else {
             cPW.setError(getString(R.string.matching_pass_error));
             ParseUser.getCurrentUser().logOut();
