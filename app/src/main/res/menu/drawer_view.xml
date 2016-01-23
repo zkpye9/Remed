@@ -3,15 +3,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
-            android:text="one"
-            android:title="First" />
+            android:text="You"
+            android:title="Home" />
         <item
             android:id="@+id/nav_second_fragment"
-            android:text="two"
-            android:title="Second" />
+            android:text="Doctors"
+            android:title="Doctors" />
         <item
             android:id="@+id/nav_third_fragment"
-            android:text="three"
-            android:title="Third" />
+            android:text="Family"
+            android:title="Family" />
     </group>
 </menu>
