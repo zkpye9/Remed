@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.ParsePush;
+import com.parse.ParseUser;
+
 public class HomePageActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
@@ -37,6 +40,8 @@ public class HomePageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                PushNotification(ParseUser.getCurrentUser());
             }
         });
     }
@@ -102,6 +107,18 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+    }
+
+    public void PushNotification(ParseUser pu) {
+        try{
+            pu.fetchIfNeeded();
+            ParsePush push = new ParsePush();
+            push.setChannel(pu.getObjectId());
+            push.setMessage("Notification of HomePageActivity");
+            push.sendInBackground();
+        }catch(Exception e){
+
+        }
     }
 
 
