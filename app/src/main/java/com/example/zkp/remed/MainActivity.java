@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         user.setPassword("my pass");
         user.setEmail("email@example.com");
 
-// other fields can be set just like with ParseObject
+        // other fields can be set just like with ParseObject
         user.put("phone", "650-555-0000");
 
         user.signUpInBackground(new SignUpCallback() {
