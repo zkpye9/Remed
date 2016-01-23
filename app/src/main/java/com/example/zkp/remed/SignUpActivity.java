@@ -6,9 +6,31 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+
 public class SignUpActivity extends AppCompatActivity {
+
+
+
+    private EditText firstName;
+    private EditText secondName;
+    private EditText email;
+    private EditText phoneNumber;
+    private EditText pw;
+    private EditText cPW;
+    private Button signUpButton;
+    private String pwParse;
+    private String emailParse;
+    private String firstParse;
+    private String lastParse;
+    private String phoneParse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,17 +40,58 @@ public class SignUpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Parse.initialize(this, "4ZnAIecM4dhXJ1iqM4KtdoZHPkyOG415vACmyMgb", "0hCpbdIilElJcZGj8NUBln85ekiFO1xI2LEpqVEi");
     }
 
-    public void signUp(View view) {
-        EditText firstName = (EditText)findViewById(R.id.FirstName);
-        EditText secondName = (EditText)findViewById(R.id.LastName);
-        EditText email = (EditText) findViewById(R.id.LoginEmail);
-        EditText phoneNumber = (EditText) findViewById(R.id.PhoneNumber);
-        EditText pw = (EditText) findViewById(R.id.LoginPassword);
-        EditText cPW = (EditText) findViewById(R.id.ConfirmPassword);
+    public void signUpConfirmation(View view) {
+        System.out.println("work\n\n\n");
+        firstName = (EditText)findViewById(R.id.FirstName);
+        firstParse = firstName.getText().toString();
 
-        
+        secondName = (EditText)findViewById(R.id.LastName);
+        lastParse = secondName.getText().toString();
+
+        email = (EditText) findViewById(R.id.LoginEmail);
+        emailParse = email.getText().toString();
+
+        phoneNumber = (EditText) findViewById(R.id.PhoneNumber);
+        phoneParse = phoneNumber.getText().toString();
+
+        pw = (EditText) findViewById(R.id.LoginPassword);
+        pwParse = pw.getText().toString();
+
+        cPW = (EditText) findViewById(R.id.ConfirmPassword);
+
+        signUpButton = (Button) findViewById(R.id.SignUp_Button);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pw.equals(cPW)) {
+                    ParseUser user = new ParseUser();
+                    user.setPassword(pwParse);
+                    user.setEmail(emailParse);
+
+                    // other fields can be set just like with ParseObject
+                    user.put("phoneNumber", phoneParse);
+                    user.put("firstName", firstParse);
+                    user.put("lastName", lastParse);
+
+                    user.signUpInBackground(new SignUpCallback() {
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                // Hooray! Let them use the app now.
+                            } else {
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
 }

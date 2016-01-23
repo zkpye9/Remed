@@ -94,6 +94,6 @@
         android:layout_alignTop="@+id/ConfirmPassword"
         android:layout_alignLeft="@+id/ConfirmPassword"
         android:layout_alignStart="@+id/ConfirmPassword"
-        android:onClick="signUp"/>
+        android:onClick="signUpConfirmation"/>
 </RelativeLayout>
 
