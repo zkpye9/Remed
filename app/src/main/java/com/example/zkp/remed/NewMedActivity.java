@@ -1,5 +1,6 @@
 package com.example.zkp.remed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -86,7 +87,6 @@ public class NewMedActivity extends AppCompatActivity {
         if(tempRecord[0]!=null){
             tempRecord[0] = newRecord;
         }*/
-        System.out.println("123123123");
     }
 
 }
