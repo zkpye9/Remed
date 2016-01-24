@@ -72,8 +72,18 @@ public class NewMedActivity extends AppCompatActivity {
             //DO weekly STUFF WITH PARSE
         }
 
-        newRecord = new Record(medNameParse, hourParse, minParse);
-        ((ArrayList<Record>)ParseUser.getCurrentUser().get("record")).add(newRecord);
+        ParseUser.getCurrentUser().remove("medName");
+        ParseUser.getCurrentUser().put("medName", medNameParse);
+        ParseUser.getCurrentUser().remove("hour");
+        ParseUser.getCurrentUser().put("hour", hourParse);
+        ParseUser.getCurrentUser().remove("min");
+        ParseUser.getCurrentUser().put("min", minParse);
+        //newRecord = new Record(medNameParse, hourParse, minParse);
+        /*Record[] tempRecord = ((Record[])ParseUser.getCurrentUser().get("record"));
+        if(tempRecord[0]!=null){
+            tempRecord[0] = newRecord;
+        }*/
+        System.out.println("123123123");
     }
 
 }

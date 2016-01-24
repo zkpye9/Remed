@@ -113,7 +113,13 @@ public class SignUpActivity extends AppCompatActivity {
             //System.out.println("Work2\n\n");
             ParseUser user = new ParseUser();
             ArrayList<ParseUser> doctors = new ArrayList<ParseUser>();
-            ArrayList<Record> records = new ArrayList<Record>();
+
+            //ArrayList<Record> records = new ArrayList<Record>();
+            //Record records[] = new Record[5];
+            String medName = "";
+            String hours = "";
+            String mins = "";
+
             boolean whetherDoc = false;
             user.setPassword(pwParse);
             user.setUsername(emailParse);
@@ -123,7 +129,9 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("firstName", firstParse);
             user.put("lastName", lastParse);
             user.put("doctors", doctors);
-            user.put("records", records);
+            //user.put("medName", medName);
+            //user.put("hour", hours);
+            //user.put("min", mins);
             user.put("identification", whetherDoc);
 
 
