@@ -72,6 +72,7 @@ public class HomePageActivity extends AppCompatActivity {
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setTitle(ParseUser.getCurrentUser().get("firstName").toString());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.ic_plus);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
