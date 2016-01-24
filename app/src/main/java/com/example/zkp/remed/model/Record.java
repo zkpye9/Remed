@@ -7,18 +7,20 @@ import java.util.Calendar;
  */
 public class Record {
     private String medName;
-    private Calendar time;
+    private String hour;
+    private String min;
 
-    public Record(String medName, Calendar time) {
+    public Record(String medName, String hour, String min) {
         this.medName = medName;
-        this.time = time;
+        this.hour = hour;
+        this.min = min;
     }
 
     public String getMedName () {
         return medName;
     }
 
-    public Calendar getTime() {
-        return time;
-    }
+    public String getHour() { return hour;}
+
+    public String getMin() {return min;}
 }
