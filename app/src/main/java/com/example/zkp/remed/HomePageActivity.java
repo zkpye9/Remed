@@ -305,7 +305,8 @@ public class HomePageActivity extends AppCompatActivity {
             pu.fetchIfNeeded();
             ParsePush push = new ParsePush();
             push.setChannel(pu.getObjectId());
-            push.setMessage("Notification of HomePageActivity");
+            push.setMessage(ParseUser.getCurrentUser().get("firstName").toString()+", it is time to take your"+
+                ParseUser.getCurrentUser().get("medName").toString() + "!");
             push.sendInBackground();
             System.out.println("123");
         }catch(Exception e){
