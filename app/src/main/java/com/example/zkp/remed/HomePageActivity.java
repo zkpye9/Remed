@@ -25,6 +25,10 @@ import com.parse.ParseUser;
 import com.parse.PushService;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomePageActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
@@ -82,6 +86,59 @@ public class HomePageActivity extends AppCompatActivity {
                 //PushNotification(ParseUser.getCurrentUser());
             }
         });
+
+        ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+
+        if (ParseUser.getCurrentUser().get("medName") == null) {
+
+        } else {
+            PushNotification(ParseUser.getCurrentUser());
+            GregorianCalendar calendarNow = new GregorianCalendar();
+            //int year = calendarNow.getGreatestMinimum(Calendar.YEAR);
+            //int month = calendarNow.getGreatestMinimum(Calendar.MONTH);
+            //int day = calendarNow.getGreatestMinimum(Calendar.DAY_OF_MONTH);
+            int hour = calendarNow.getGreatestMinimum(Calendar.HOUR);
+            int hourNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("hour"));
+            int minNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("min"));
+            int min = calendarNow.getGreatestMinimum((Calendar.MINUTE));
+
+            int delayH;
+            int delayM;
+            if (hourNeed - hour >= 0) {
+                if (minNeed - min >=0) {
+                    delayH = hourNeed - hour;
+                    delayM = minNeed - min;
+                }
+                else {
+                    if (hourNeed-hour == 0) {
+                        delayH = 23;
+                        delayM = 60 - (min-minNeed);
+                    } else {
+                        delayH = hourNeed - hour - 1;
+                        delayM = 60 - (min-minNeed);
+                    }
+                }
+            } else {
+                delayH = 0;
+                delayM = 0;
+            //TODO: calculate the time;
+            }
+
+            long delay = (delayH*60*60+delayM*60) * 1000;
+            //GregorianCalendar calendarNeed = new GregorianCalendar(year, month, day, hour, min);
+            long period = 86400000;
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    PushNotification(ParseUser.getCurrentUser());
+                    System.out.println("456");
+                }
+            };
+            Timer timer = new Timer("news", true);
+            timer.scheduleAtFixedRate(task, 10000, period);
+            //timer.scheduleAtFixedRate(task, delay, period);
+
+        }
     }
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -144,7 +201,7 @@ public class HomePageActivity extends AppCompatActivity {
         Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
-                fragmentClass = YouLayoutFragment.class;
+                fragmentClass = MedListItem.class;
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = DoctorsLayoutFragment.class;
