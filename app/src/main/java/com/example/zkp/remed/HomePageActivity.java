@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
@@ -24,19 +23,17 @@ import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomePageActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
-
-    private String medName;
-    private String hour;
-    private String min;
-    private String freq;
-    private String AM_PM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +59,7 @@ public class HomePageActivity extends AppCompatActivity {
         setupDrawerContent(nvDrawer);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.flContent, new MedListItem());
+        ft.add(R.id.flContent, new YouLayoutFragment());
         ft.commit();
         setTitle(ParseUser.getCurrentUser().get("firstName").toString());
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setTitle(ParseUser.getCurrentUser().get("firstName").toString());
@@ -72,8 +69,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, NewMedActivity.class);
-                int requestCode = 1;
-                startActivityForResult(intent, requestCode);
+                startActivity(intent);
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
 
@@ -82,34 +78,101 @@ public class HomePageActivity extends AppCompatActivity {
                 //PushNotification(ParseUser.getCurrentUser());
             }
         });
-    }
 
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        // Collect data from the intent and use it
-       // String medName = data.getString("medName");
-        //String hour = data.getString("medName");
-        //String min = data.getString("medName");
-        //String freq = data.getString("medName");
-        //String AM_PM = data.getString("medName");
-        ArrayList<String> result=data.getStringArrayListExtra("resultArray");
+        ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 
-        TextView medName = (TextView) findViewById(R.id.MedicationName);
-        medName.setText(result.get(0));
-        if(result.get(1).equals("Weekly")){
-            TextView freq = (TextView) findViewById(R.id.Daily_Weekly);
-            freq.setText("Take Medication Once a Week - Monday");
-            freq.setTextSize(15);
+        if (ParseUser.getCurrentUser().get("medName") == null) {
+
         } else {
-            TextView freq = (TextView) findViewById(R.id.Daily_Weekly);
-            freq.setText("Take Medication Daily");
+            PushNotification(ParseUser.getCurrentUser());
+            GregorianCalendar calendarNow = new GregorianCalendar();
+            //int year = calendarNow.getGreatestMinimum(Calendar.YEAR);
+            //int month = calendarNow.getGreatestMinimum(Calendar.MONTH);
+            //int day = calendarNow.getGreatestMinimum(Calendar.DAY_OF_MONTH);
+            int hour = calendarNow.getGreatestMinimum(Calendar.HOUR);
+            int hourNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("hour"));
+            int minNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("min"));
+            int min = calendarNow.getGreatestMinimum((Calendar.MINUTE));
+
+            int delayH;
+            int delayM;
+            if (hourNeed - hour >= 0) {
+                if (minNeed - min >=0) {
+                    delayH = hourNeed - hour;
+                    delayM = minNeed - min;
+                }
+                else {
+                    if (hourNeed-hour == 0) {
+                        delayH = 23;
+                        delayM = 60 - (min-minNeed);
+                    } else {
+                        delayH = hourNeed - hour - 1;
+                        delayM = 60 - (min-minNeed);
+                    }
+                }
+            } else {
+                delayH = 0;
+                delayM = 0;
+                //TODO: calculate the time;
+            }
+
+            long delay = (delayH*60*60+delayM*60) * 1000;
+            //GregorianCalendar calendarNeed = new GregorianCalendar(year, month, day, hour, min);
+            long period = 86400000;
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    PushNotification(ParseUser.getCurrentUser());
+                    System.out.println("456");
+                }
+            };
+            Timer timer = new Timer("news", true);
+            timer.scheduleAtFixedRate(task, 10000, period);
+            //timer.scheduleAtFixedRate(task, delay, period);
+
+        }
+        /*GregorianCalendar calendarNow = new GregorianCalendar();
+        //int year = calendarNow.getGreatestMinimum(Calendar.YEAR);
+        //int month = calendarNow.getGreatestMinimum(Calendar.MONTH);
+        //int day = calendarNow.getGreatestMinimum(Calendar.DAY_OF_MONTH);
+        int hour = calendarNow.getGreatestMinimum(Calendar.HOUR);
+        int hourNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("hour"));
+        int minNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("min"));
+        int min = calendarNow.getGreatestMinimum((Calendar.MINUTE));
+
+        int delayH;
+        int delayM;
+        if (hourNeed - hour >= 0) {
+            if (minNeed - min >=0) {
+                delayH = hourNeed - hour;
+                delayM = minNeed - min;
+            }
+            else {
+                if (hourNeed-hour == 0) {
+                    delayH = 23;
+                    delayM = 60 - (min-minNeed);
+                } else {
+                    delayH = hourNeed - hour - 1;
+                    delayM = 60 - (min-minNeed);
+                }
+            }
+        } else {
+            delayH = 0;
+            delayM = 0;
+            //TODO: calculate the time;
         }
 
-        TextView time = (TextView) findViewById(R.id.time);
-        String concat = result.get(2) + ":" + result.get(3) + result.get(4);
-        time.setText(concat);
-        if(result.get(1).equals("Weekly")) {
-            time.setTextSize(15);
-        }
+        long delay = (delayH*60*60+delayM*60) * 1000;
+        //GregorianCalendar calendarNeed = new GregorianCalendar(year, month, day, hour, min);
+        long period = 86400000;
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                PushNotification(ParseUser.getCurrentUser());
+            }
+        };
+        Timer timer = new Timer("news", true);
+        timer.scheduleAtFixedRate(task, delay, period);*/
 
     }
 
@@ -195,6 +258,9 @@ public class HomePageActivity extends AppCompatActivity {
             push.setChannel(pu.getObjectId());
             push.setMessage("Notification of HomePageActivity");
             push.sendInBackground();
+
+            System.out.println("123");
+
         }catch(Exception e){
 
         }
