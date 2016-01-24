@@ -73,6 +73,9 @@ public class NewMedActivity extends AppCompatActivity {
         }
 
         newRecord = new Record(medNameParse, hourParse, minParse);
+
+
+        //System.out.println(((ArrayList<Record>) ParseUser.getCurrentUser().get("record")).get(0).getMedName().toString());
         ((ArrayList<Record>)ParseUser.getCurrentUser().get("record")).add(newRecord);
     }
 
