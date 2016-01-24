@@ -22,6 +22,7 @@ public class RemedApplication extends Application {
         //ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
+        ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 
         /*try{
             ParseUser.getCurrentUser().fetchIfNeeded();
