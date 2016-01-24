@@ -50,4 +50,7 @@
     <string name="weekly">Weekly</string>
 
     <string name="create">Create</string>
+
+    <string name="log_out">Log Out</string>
+    <string name="settings">Settings</string>
 </resources>
