@@ -146,12 +146,12 @@ public class SignUpActivity extends AppCompatActivity {
             ParseUser.logInInBackground(emailParse, pwParse,
                     new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
-                            if (user != null) {
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        "No such user exist, please signup",
-                                        Toast.LENGTH_LONG).show();
-                            } else {
+                            //if (user != null) {
+                            //    Toast.makeText(
+                            //            getApplicationContext(),
+                            //            "No such user exist, please signup",
+                            //            Toast.LENGTH_LONG).show();
+                            //} else {
 
                                 Intent intent = new Intent(
                                         SignUpActivity.this,
@@ -161,7 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         "Successfully Sign up",
                                         Toast.LENGTH_LONG).show();
                                 finish();
-                            }
+                            //}
                         }
                     });
 
