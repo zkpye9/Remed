@@ -126,6 +126,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void PushNotification(ParseUser pu) {
+        ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
         try{
             pu.fetchIfNeeded();
             ParsePush push = new ParsePush();

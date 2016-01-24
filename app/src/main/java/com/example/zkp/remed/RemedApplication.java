@@ -20,18 +20,19 @@ public class RemedApplication extends Application {
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
         //ParseUser.enableAutomaticUser();
-        //ParseACL defaultACL = new ParseACL();
-        //ParseACL.setDefaultACL(defaultACL, true);
+        ParseACL defaultACL = new ParseACL();
+        ParseACL.setDefaultACL(defaultACL, true);
 
-        try{
+        /*try{
             ParseUser.getCurrentUser().fetchIfNeeded();
             List<String> subscribedChannels = ParseInstallation.getCurrentInstallation().getList("channels");
             if(!subscribedChannels.contains(ParseUser.getCurrentUser().getObjectId())){
                 ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
             }
+            System.out.println("123123");
         }catch(Exception e){
 
-        }
+        }*/
 
     }
 }
