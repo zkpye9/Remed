@@ -24,6 +24,7 @@ import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -89,10 +90,10 @@ public class HomePageActivity extends AppCompatActivity {
 
         ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 
-        if (ParseUser.getCurrentUser().get("medName") == null) {
+        /*if (ParseUser.getCurrentUser().get("medName") == null) {
 
         } else {
-            PushNotification(ParseUser.getCurrentUser());
+            //PushNotification(ParseUser.getCurrentUser());
             GregorianCalendar calendarNow = new GregorianCalendar();
             //int year = calendarNow.getGreatestMinimum(Calendar.YEAR);
             //int month = calendarNow.getGreatestMinimum(Calendar.MONTH);
@@ -125,6 +126,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
 
             long delay = (delayH*60*60+delayM*60) * 1000;
+            System.out.println("789"+delay+"  "+delayH+"  "+delayM);
             //GregorianCalendar calendarNeed = new GregorianCalendar(year, month, day, hour, min);
             long period = 86400000;
             TimerTask task = new TimerTask() {
@@ -135,10 +137,10 @@ public class HomePageActivity extends AppCompatActivity {
                 }
             };
             Timer timer = new Timer("news", true);
-            timer.scheduleAtFixedRate(task, 10000, period);
-            //timer.scheduleAtFixedRate(task, delay, period);
+            //timer.scheduleAtFixedRate(task, 10000, period);
+            timer.scheduleAtFixedRate(task, delay, period);
 
-        }
+        }*/
     }
 
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -166,6 +168,58 @@ public class HomePageActivity extends AppCompatActivity {
         time.setText(concat);
         if(result.get(1).equals("Weekly")) {
             time.setTextSize(15);
+        }
+
+        if (ParseUser.getCurrentUser().get("medName") == null) {
+
+        } else {
+            //PushNotification(ParseUser.getCurrentUser());
+            //GregorianCalendar calendarNow = new GregorianCalendar();
+            //int year = calendarNow.getGreatestMinimum(Calendar.YEAR);
+            //int month = calendarNow.getGreatestMinimum(Calendar.MONTH);
+            //int day = calendarNow.getGreatestMinimum(Calendar.DAY_OF_MONTH);
+            int hour = Integer.parseInt(getCurrentTimeFormat("H"));
+            int hourNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("hour"));
+            int minNeed = Integer.parseInt((String) ParseUser.getCurrentUser().get("min"));
+            int min = Integer.parseInt(getCurrentTimeFormat("m"));
+
+            int delayH;
+            int delayM;
+            if (hourNeed - hour >= 0) {
+                if (minNeed - min >=0) {
+                    delayH = hourNeed - hour;
+                    delayM = minNeed - min;
+                }
+                else {
+                    if (hourNeed-hour == 0) {
+                        delayH = 23;
+                        delayM = 60 - (min-minNeed);
+                    } else {
+                        delayH = hourNeed - hour - 1;
+                        delayM = 60 - (min-minNeed);
+                    }
+                }
+            } else {
+                delayH = 0;
+                delayM = 0;
+                //TODO: calculate the time;
+            }
+
+            long delay = (delayH*60*60+delayM*60) * 1000;
+            System.out.println("789"+delay+"  "+delayH+"  "+delayM);
+            //GregorianCalendar calendarNeed = new GregorianCalendar(year, month, day, hour, min);
+            long period = 86400000;
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    PushNotification(ParseUser.getCurrentUser());
+                    System.out.println("456");
+                }
+            };
+            Timer timer = new Timer("news", true);
+            //timer.scheduleAtFixedRate(task, 10000, period);
+            timer.scheduleAtFixedRate(task, delay, period);
+
         }
 
     }
@@ -252,8 +306,18 @@ public class HomePageActivity extends AppCompatActivity {
             push.setChannel(pu.getObjectId());
             push.setMessage("Notification of HomePageActivity");
             push.sendInBackground();
+            System.out.println("123");
         }catch(Exception e){
 
         }
+    }
+
+    private String getCurrentTimeFormat(String timeFormat){
+        String time = "";
+        SimpleDateFormat df = new SimpleDateFormat(timeFormat);
+        Calendar c = Calendar.getInstance();
+        time = df.format(c.getTime());
+
+        return time;
     }
 }
