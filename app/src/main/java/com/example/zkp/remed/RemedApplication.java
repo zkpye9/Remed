@@ -16,9 +16,9 @@ public class RemedApplication extends Application {
         Parse.initialize(this, "4ZnAIecM4dhXJ1iqM4KtdoZHPkyOG415vACmyMgb", "0hCpbdIilElJcZGj8NUBln85ekiFO1xI2LEpqVEi");
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
-        ParseUser.enableAutomaticUser();
-        ParseACL defaultACL = new ParseACL();
-        ParseACL.setDefaultACL(defaultACL, true);
+        //ParseUser.enableAutomaticUser();
+        //ParseACL defaultACL = new ParseACL();
+        //ParseACL.setDefaultACL(defaultACL, true);
 
         /*try{
             ParseUser.getCurrentUser().fetchIfNeeded();
