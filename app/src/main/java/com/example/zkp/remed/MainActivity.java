@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-                // Send logged in users to Welcome.class
-                Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
-                startActivity(intent);
+            // Send logged in users to Welcome.class
+            Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
+            startActivity(intent);
             finish();
         } else {
             // Send user to LoginActivity.class
