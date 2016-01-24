@@ -1,9 +1,11 @@
 package com.example.zkp.remed;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -57,20 +59,22 @@ public class NewMedActivity extends AppCompatActivity {
         RadioGroup rg = (RadioGroup)findViewById(R.id.AM_PM);
         String radioValue = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
 
+        String AM_PM;
         if(radioValue.equals("AM")) {
-            //DO AM STUFF WITH PARSE
+            AM_PM = "AM";
         } else {
-            //DO FM STUFF WITH PARSE
+            AM_PM = "PM";
         }
 
         RadioGroup rg2 = (RadioGroup)findViewById(R.id.radioFeq);
         String radioValue2 = ((RadioButton)findViewById(rg2.getCheckedRadioButtonId())).getText().toString();
 
-        if(radioValue2.equals(R.string.daily)) {
-            //DO Daily STUFF WITH PARSE
+        String Freq;
+        if(radioValue2.equals("Daily")) {
+            Freq = "Daily";
 
         } else {
-            //DO weekly STUFF WITH PARSE
+            Freq = "Weekly";
         }
 
         //ParseUser.getCurrentUser().remove("medName");
@@ -87,6 +91,19 @@ public class NewMedActivity extends AppCompatActivity {
         if(tempRecord[0]!=null){
             tempRecord[0] = newRecord;
         }*/
+
+        ArrayList<String> result = new ArrayList<String>();
+        result.add(medNameParse);
+        result.add(Freq);
+        result.add(hourParse);
+        result.add(minParse);
+        result.add(AM_PM);
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("resultArray", result);
+        setResult(Activity.RESULT_OK, returnIntent);
+
+
+        finish();
     }
 
 }

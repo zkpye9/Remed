@@ -10,9 +10,13 @@
     tools:context="com.example.zkp.remed.YouLayoutFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/fragment_container3"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:name="android.app.ListFragment"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </FrameLayout>

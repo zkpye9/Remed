@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
@@ -23,11 +24,19 @@ import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
+import java.util.ArrayList;
+
 public class HomePageActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+
+    private String medName;
+    private String hour;
+    private String min;
+    private String freq;
+    private String AM_PM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +62,7 @@ public class HomePageActivity extends AppCompatActivity {
         setupDrawerContent(nvDrawer);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.flContent, new YouLayoutFragment());
+        ft.add(R.id.flContent, new MedListItem());
         ft.commit();
         setTitle(ParseUser.getCurrentUser().get("firstName").toString());
         nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setTitle(ParseUser.getCurrentUser().get("firstName").toString());
@@ -63,7 +72,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, NewMedActivity.class);
-                startActivity(intent);
+                int requestCode = 1;
+                startActivityForResult(intent, requestCode);
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
 
@@ -72,6 +82,35 @@ public class HomePageActivity extends AppCompatActivity {
                 //PushNotification(ParseUser.getCurrentUser());
             }
         });
+    }
+
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        // Collect data from the intent and use it
+       // String medName = data.getString("medName");
+        //String hour = data.getString("medName");
+        //String min = data.getString("medName");
+        //String freq = data.getString("medName");
+        //String AM_PM = data.getString("medName");
+        ArrayList<String> result=data.getStringArrayListExtra("resultArray");
+
+        TextView medName = (TextView) findViewById(R.id.MedicationName);
+        medName.setText(result.get(0));
+        if(result.get(1).equals("Weekly")){
+            TextView freq = (TextView) findViewById(R.id.Daily_Weekly);
+            freq.setText("Take Medication Once a Week - Monday");
+            freq.setTextSize(15);
+        } else {
+            TextView freq = (TextView) findViewById(R.id.Daily_Weekly);
+            freq.setText("Take Medication Daily");
+        }
+
+        TextView time = (TextView) findViewById(R.id.time);
+        String concat = result.get(2) + ":" + result.get(3) + result.get(4);
+        time.setText(concat);
+        if(result.get(1).equals("Weekly")) {
+            time.setTextSize(15);
+        }
+
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
