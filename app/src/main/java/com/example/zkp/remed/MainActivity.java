@@ -8,7 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Parse.initialize(this, "4ZnAIecM4dhXJ1iqM4KtdoZHPkyOG415vACmyMgb", "0hCpbdIilElJcZGj8NUBln85ekiFO1xI2LEpqVEi");
+
+        try{
+
+            ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+
+        }catch(Exception e){
+
+        }
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
