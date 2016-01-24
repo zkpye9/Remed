@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.zkp.remed.NewMedActivity"
+    tools:showIn="@layout/activity_new_med">
+
+    <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textCapWords"
+    android:hint="@string/med_name"
+    android:ems="10"
+    android:id="@+id/medName"
+    android:layout_gravity="center_horizontal|top"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true" />
+
+    <EditText
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:inputType="number"
+    android:hint="@string/hour"
+    android:ems="10"
+    android:id="@+id/Hour"
+    android:layout_gravity="center"
+    android:layout_marginTop="64dp"
+    android:layout_alignTop="@+id/medName"
+    android:layout_alignLeft="@+id/medName"
+    android:layout_alignStart="@+id/medName"/>
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/min"
+        android:ems="10"
+        android:id="@+id/Min"
+        android:layout_gravity="center"
+        android:layout_alignTop="@+id/Hour"
+        android:layout_alignRight="@+id/medName"
+        android:layout_alignEnd="@+id/medName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="35dp"
+        android:text=":"
+        android:layout_alignBaseline="@+id/Min"
+        android:layout_alignBottom="@+id/Min"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2" />
+    <RadioGroup
+        android:id="@+id/AM_PM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/Hour"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AM"
+            android:id="@+id/AM"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PM"
+            android:id="@+id/PM"
+
+            android:checked="false" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:text="@string/frequency"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/AM_PM"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3" />
+
+    <RadioGroup
+        android:id="@+id/radioFeq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/AM_PM"
+        android:layout_alignStart="@+id/AM_PM"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Daily"
+            android:text="@string/daily"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Weekly"
+            android:text="@string/weekly"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/SignUp_firstButton"
+        android:text="@string/create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_alignTop="@+id/radioFeq"
+
+        android:onClick="create"/>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.zkp.remed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -60,12 +61,14 @@ public class HomePageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(HomePageActivity.this, NewMedActivity.class);
+                startActivity(intent);
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
 
 
                 //Test. will be deleted.
-                PushNotification(ParseUser.getCurrentUser());
+                //PushNotification(ParseUser.getCurrentUser());
             }
         });
     }

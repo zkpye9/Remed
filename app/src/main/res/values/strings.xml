@@ -38,4 +38,16 @@
     <string name="doctors">Doctors</string>
     <string name="family">Family</string>
     <string name="you">You</string>
+    <string name="title_activity_new_med">Create New Reminder</string>
+
+    <string name="frequency">Frequency</string>
+
+    <string name="hour">Hour</string>
+    <string name="min">Minute</string>
+    <string name="med_name">Medication Name</string>
+
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+
+    <string name="create">Create</string>
 </resources>
