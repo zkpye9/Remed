@@ -4,7 +4,10 @@ import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseInstallation;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 /**
  * Created by zkp on 1/23/16.
@@ -20,7 +23,7 @@ public class RemedApplication extends Application {
         //ParseACL defaultACL = new ParseACL();
         //ParseACL.setDefaultACL(defaultACL, true);
 
-        /*try{
+        try{
             ParseUser.getCurrentUser().fetchIfNeeded();
             List<String> subscribedChannels = ParseInstallation.getCurrentInstallation().getList("channels");
             if(!subscribedChannels.contains(ParseUser.getCurrentUser().getObjectId())){
@@ -28,7 +31,7 @@ public class RemedApplication extends Application {
             }
         }catch(Exception e){
 
-        }*/
+        }
 
     }
 }
