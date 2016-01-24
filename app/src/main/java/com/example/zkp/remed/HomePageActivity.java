@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -48,6 +49,13 @@ public class HomePageActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.flContent, new YouLayoutFragment());
+        ft.commit();
+        setTitle(ParseUser.getCurrentUser().get("firstName").toString());
+        nvDrawer.getMenu().findItem(R.id.nav_first_fragment).setTitle(ParseUser.getCurrentUser().get("firstName").toString());
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,27 +101,28 @@ public class HomePageActivity extends AppCompatActivity {
         Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
-                //fragmentClass = FirstFragment.class;
+                fragmentClass = YouLayoutFragment.class;
                 break;
             case R.id.nav_second_fragment:
-               //fragmentClass = SecondFragment.class;
+                fragmentClass = DoctorsLayoutFragment.class;
                 break;
             case R.id.nav_third_fragment:
-               // fragmentClass = ThirdFragment.class;
+                fragmentClass = FamilyLayoutFragment.class;
                 break;
             default:
-               // fragmentClass = FirstFragment.class;
+                fragmentClass = YouLayoutFragment.class;
         }
 
         try {
-            //fragment = (Fragment) fragmentClass.newInstance();
+
+            fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        //fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
         // Highlight the selected item, update the title, and close the drawer
         menuItem.setChecked(true);

@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:id="@+id/textView"
+        android:id="@+id/ImageView"
         android:src="@mipmap/ic_remed2"
         android:contentDescription="main_logo" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="android.app.ListFragment"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/ImageView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="80dp" >
