@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParsePush;
@@ -112,6 +113,16 @@ public class HomePageActivity extends AppCompatActivity {
             case R.id.nav_third_fragment:
                 fragmentClass = FamilyLayoutFragment.class;
                 break;
+            case R.id.nav_fourth_fragment:
+                Toast.makeText(getApplicationContext(), "Not yet Implemented", Toast.LENGTH_SHORT).show();
+                return;
+            case R.id.nav_fifth_fragment:
+                ParseUser.logOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                return;
             default:
                 fragmentClass = YouLayoutFragment.class;
         }
