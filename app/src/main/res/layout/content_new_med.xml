@@ -127,7 +127,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_alignTop="@+id/radioFeq"
-
-        android:onClick="create"/>
-
+        android:onClick="create" />
 </RelativeLayout>

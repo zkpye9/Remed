@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.zkp.remed.model.Record;
 import com.parse.ParseUser;
@@ -40,6 +42,8 @@ public class NewMedActivity extends AppCompatActivity {
     }
 
     public void create(View view) {
+
+
         medName = (EditText)findViewById(R.id.medName);
         medNameParse = medName.getText().toString();
 
@@ -48,6 +52,25 @@ public class NewMedActivity extends AppCompatActivity {
 
         min = (EditText)findViewById(R.id.Min);
         minParse = min.getText().toString();
+
+        RadioGroup rg = (RadioGroup)findViewById(R.id.AM_PM);
+        String radioValue = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
+
+        if(radioValue.equals("AM")) {
+            //DO AM STUFF WITH PARSE
+        } else {
+            //DO FM STUFF WITH PARSE
+        }
+
+        RadioGroup rg2 = (RadioGroup)findViewById(R.id.radioFeq);
+        String radioValue2 = ((RadioButton)findViewById(rg2.getCheckedRadioButtonId())).getText().toString();
+
+        if(radioValue2.equals(R.string.daily)) {
+            //DO Daily STUFF WITH PARSE
+
+        } else {
+            //DO weekly STUFF WITH PARSE
+        }
 
         newRecord = new Record(medNameParse, hourParse, minParse);
         ((ArrayList<Record>)ParseUser.getCurrentUser().get("record")).add(newRecord);

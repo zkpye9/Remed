@@ -7,11 +7,10 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
-    <TextView
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Header"
-        android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_remed2" />
 
 </LinearLayout>
